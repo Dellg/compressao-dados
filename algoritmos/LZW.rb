@@ -9,12 +9,7 @@ class LZW
     configuracaoInicial()
     saida = ""
     criaDicionario(entrada)
-
-    # preparação
-    puts "\n\tS\t\tC\t\tSaída\t\tCódigo\t\tSímbolo"
-    @dicionario.each do |chave, valor|
-      puts "\t\t\t\t\t\t\t#{valor}\t\t#{chave}"
-    end
+    preparacao("C", "Saída")
 
     # algoritmo LZW com prints apenas para melhorar visualização
     s = entrada[0]
@@ -44,12 +39,7 @@ class LZW
     retorno = ""
     entrada = ""
     criaDicionario(simbolos)
-
-    # preparação
-    puts "\n\tS\t\tK\t\tEntrada\t\tCódigo\t\tSímbolo"
-    @dicionario.each do |chave, valor|
-      puts "\t\t\t\t\t\t\t#{valor}\t\t#{chave}"
-    end
+    preparacao("K", "Entrada")
 
     # algoritmo LZW com prints apenas para melhorar visualização
     s = nil
@@ -73,6 +63,14 @@ class LZW
     puts "\t#{s}\t\tEOF"
 
     puts "\nEntrada: #{retorno}"
+  end
+
+  # método que imprime o cabeçalho da solução
+  def preparacao(variavel, tipo)
+    puts "\n\tS\t\t#{variavel}\t\t#{tipo}\t\tCódigo\t\tSímbolo"
+    @dicionario.each do |chave, valor|
+      puts "\t\t\t\t\t\t\t#{valor}\t\t#{chave}"
+    end
   end
 
   # calcular a taxa de compressao
