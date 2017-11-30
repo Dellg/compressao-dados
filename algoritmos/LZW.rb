@@ -1,12 +1,12 @@
 class LZW
   # construtor
   def initialize()
-    @contagemSimbolo = 1
-    @dicionario = {}
+    configuracaoInicial()
   end
 
   # método que irá comprimir
   def comprimir(entrada)
+    configuracaoInicial()
     saida = ""
     criaDicionario(entrada)
 
@@ -40,6 +40,7 @@ class LZW
 
   # método que irá descomprimir
   def descomprimir(saida, simbolos)
+    configuracaoInicial()
     retorno = ""
     entrada = ""
     criaDicionario(simbolos)
@@ -90,5 +91,11 @@ class LZW
         @contagemSimbolo += 1
       end
     end
+  end
+
+  # inicia configuração inicial do contador e do dicionário
+  def configuracaoInicial()
+    @contagemSimbolo = 1
+    @dicionario = {}
   end
 end
