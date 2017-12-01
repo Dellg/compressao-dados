@@ -1,4 +1,4 @@
-require './algoritmos/LZW'
+require_relative './algoritmos/LZW'
 
 class Multimidia
 
