@@ -1,4 +1,7 @@
+require_relative 'calculos'
+
 class LZW
+  include Calculos
   # construtor
   def initialize()
     configuracaoInicial()
@@ -29,8 +32,7 @@ class LZW
     puts "\t#{s}\t\tEOF\t\t#{@dicionario[s]}"
     saida += @dicionario[s].to_s
 
-    puts "\nSaída: #{saida}"
-    puts "Taxa de Compressão: #{calcularTaxaCompressao(entrada, saida)}"
+    return saida
   end
 
   # método que irá descomprimir
@@ -62,7 +64,7 @@ class LZW
     end
     puts "\t#{s}\t\tEOF"
 
-    puts "\nEntrada: #{retorno}"
+    return retorno
   end
 
   # método que imprime o cabeçalho da solução
@@ -71,12 +73,6 @@ class LZW
     @dicionario.each do |chave, valor|
       puts "\t\t\t\t\t\t\t#{valor}\t\t#{chave}"
     end
-  end
-
-  # calcular a taxa de compressao
-  def calcularTaxaCompressao(entrada, saida)
-    taxa = (0.0 + entrada.length) / saida.length
-    return taxa
   end
 
   # ordena e adiciona cada símbolo no dicionário com um número associado
