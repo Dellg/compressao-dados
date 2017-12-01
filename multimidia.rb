@@ -18,7 +18,14 @@ class Multimidia
 
     elsif opcao == 2
       puts "\tDigite o código que deseja decodificar (cada código deve ser separado por espaço):"
-      saida = gets.split(" ")
+      while true
+        saida = gets.split(" ")
+        if saida.length <= 1
+          puts "\tNão foi identificado nenhum espaço separando o código!\n\tDigite novamente separando cada código com um espaço."
+        else
+          break
+        end
+      end
       puts "\tAgora digite os símbolos que compõem o dicionário inicial:"
       simbolos = gets.chomp
       retorno = algoritmoLZW.descomprimir(saida, simbolos)

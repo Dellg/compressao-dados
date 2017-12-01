@@ -24,7 +24,7 @@ class LZW
       else
         saida += @dicionario[s].to_s
         @dicionario[s + c] = @contagemSimbolo
-        print "\t#{s}\t\t#{c}\t\t#{@dicionario[s]}\t\t#{@contagemSimbolo}\t\t#{s + c}\n"
+        print "\t#{s}\t\t#{c}\t\t#{@dicionario[s]}\t\t#{s + c}\t\t#{@contagemSimbolo}\n"
         @contagemSimbolo += 1
         s = c
       end
@@ -57,7 +57,7 @@ class LZW
       retorno += entrada.to_s
       if s != nil
         @dicionario[s + entrada[0]] = @contagemSimbolo
-        print "\t#{s}\t\t#{k}\t\t#{entrada}\t\t#{@contagemSimbolo}\t\t#{s + entrada[0]}\n"
+        print "\t#{s}\t\t#{k}\t\t#{entrada}\t\t#{s + entrada[0]}\t\t#{@contagemSimbolo}\n"
         @contagemSimbolo += 1
       end
       s = entrada
@@ -69,9 +69,9 @@ class LZW
 
   # método que imprime o cabeçalho da solução
   def preparacao(variavel, tipo)
-    puts "\n\tS\t\t#{variavel}\t\t#{tipo}\t\tCódigo\t\tSímbolo"
+    puts "\n\tS\t\t#{variavel}\t\t#{tipo}\t\tSímbolo\t\tCódigo"
     @dicionario.each do |chave, valor|
-      puts "\t\t\t\t\t\t\t#{valor}\t\t#{chave}"
+      puts "\t\t\t\t\t\t\t#{chave}\t\t#{valor}"
     end
   end
 
