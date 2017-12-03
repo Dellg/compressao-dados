@@ -1,9 +1,11 @@
 require_relative './algoritmos/lzw'
 require_relative './algoritmos/runLength'
+require_relative './algoritmos/shannonFano'
 
 class Multimidia
   runLength = RunLength.new
   algoritmoLZW = LZW.new
+  shannonFano = ShannonFano.new
 
   while true
     puts "\n\tDigite 1 para RunLength, 2 para LZW, 3 para Shannon-Fano ou qualquer outra coisa para sair:"
@@ -50,6 +52,9 @@ class Multimidia
 
     # shannon-fano
     when 3
+      puts "\n\tDigite os símbolos que deseja codificar:"
+      entrada = gets.chomp
+      saida = shannonFano.comprimir(entrada)
 
     else
       break

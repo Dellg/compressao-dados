@@ -2,9 +2,8 @@ require_relative 'calculos'
 
 class LZW
   include Calculos
-  # construtor
+  # construtor vazio
   def initialize()
-    configuracaoInicial()
   end
 
   # método que irá comprimir
