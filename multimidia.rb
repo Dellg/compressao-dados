@@ -55,9 +55,19 @@ class Multimidia
       puts "\n\tDigite os símbolos que deseja codificar:"
       entrada = gets.chomp
       saida = shannonFano.comprimir(entrada)
+      probabilidade = shannonFano.configuracaoInicial(entrada, true)
+      entropia = shannonFano.calcularEntropia(probabilidade)
+      comprimento = shannonFano.calcularComprimentoMedio(probabilidade, saida)
+      eficiencia = shannonFano.calcularEficiencia(entropia, comprimento)
+      redundancia = shannonFano.calcularRedundancia(eficiencia)
 
       puts "\nSaída:"
       shannonFano.imprime(saida)
+
+      puts "\nEntropia: #{entropia} bits/símbolo"
+      puts "Comprimento médio: #{comprimento} bits/símbolo"
+      puts "Eficiência: #{eficiencia} ou #{(eficiencia * 100).round(2)}%"
+      puts "Redundância: #{redundancia} ou #{(redundancia * 100).round(2)}%"
     else
       break
     end

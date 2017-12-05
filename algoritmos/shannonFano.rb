@@ -10,6 +10,9 @@ class ShannonFano
   def comprimir(entrada)
     configuracaoInicial(entrada)
 
+    puts "\nEntrada:"
+    imprime(@probabilidades)
+
     divideConjunto(@probabilidades)
     return @codigos
   end
@@ -46,7 +49,7 @@ class ShannonFano
   end
 
   # inicia configuração inicial da probabilidade dos símbolos
-  def configuracaoInicial(entrada)
+  def configuracaoInicial(entrada, *retorno)
     @probabilidades = {}
     @codigos = {}
     for i in 0...entrada.length
@@ -61,9 +64,9 @@ class ShannonFano
       @codigos[chave] = ""
     end
     @probabilidades = @probabilidades.sort_by(&:last).reverse.to_h
-
-    puts "\nEntrada:"
-    imprime(@probabilidades)
+    if retorno
+      return @probabilidades
+    end
   end
 
   # método que imprime dicionário
