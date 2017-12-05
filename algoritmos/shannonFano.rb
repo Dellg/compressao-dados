@@ -20,12 +20,17 @@ class ShannonFano
       # cria subconjunto direito, o esquerdo será o restante do dicionário de entrada
       subconjuntoDireito = {}
 
-      prob = 0
-      maxProb = calcularProbabilidade(dicionario)
-      while prob < (maxProb / 2)
+      prob = 0.0
+      maxProb = calcularProbabilidade(dicionario) / 2
+
+      while prob < maxProb
         ultimaChave = dicionario.keys.last
-        subconjuntoDireito[ultimaChave] = dicionario.delete(ultimaChave)
-        prob += subconjuntoDireito[ultimaChave]
+        if maxProb >= dicionario[ultimaChave] + prob
+          subconjuntoDireito[ultimaChave] = dicionario.delete(ultimaChave)
+          prob += subconjuntoDireito[ultimaChave]
+        else
+          prob += dicionario[ultimaChave]
+        end
       end
 
       dicionario.each do |chave, valor|
@@ -56,5 +61,15 @@ class ShannonFano
       @codigos[chave] = ""
     end
     @probabilidades = @probabilidades.sort_by(&:last).reverse.to_h
+
+    puts "\nEntrada:"
+    imprime(@probabilidades)
+  end
+
+  # método que imprime dicionário
+  def imprime(dicionario)
+    dicionario.each do |chave, valor|
+      puts "   #{chave}\t#{valor}"
+    end
   end
 end

@@ -56,7 +56,8 @@ class Multimidia
       entrada = gets.chomp
       saida = shannonFano.comprimir(entrada)
 
-      puts "\nSaída: #{saida}"
+      puts "\nSaída:"
+      shannonFano.imprime(saida)
     else
       break
     end

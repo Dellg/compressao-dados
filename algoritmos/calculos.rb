@@ -7,7 +7,7 @@ module Calculos
 
   # calcular a probabilidade máxima de um subconjunto
   def calcularProbabilidade(dicionario)
-    probabilidadeMaxima = 0
+    probabilidadeMaxima = 0.0
     dicionario.each do |chave, valor|
       probabilidadeMaxima += valor
     end
