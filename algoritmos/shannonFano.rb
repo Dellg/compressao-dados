@@ -26,6 +26,7 @@ class ShannonFano
       prob = 0.0
       maxProb = calcularProbabilidade(dicionario) / 2
 
+      # aqui é feita a divisão entre os conjuntos em relação aos pesos
       while prob < maxProb
         ultimaChave = dicionario.keys.last
         if maxProb >= dicionario[ultimaChave] + prob
@@ -36,6 +37,7 @@ class ShannonFano
         end
       end
 
+      # atribui o valor 0 à esquerda e o valor 1 à direita
       dicionario.each do |chave, valor|
         @codigos[chave] += "0"
       end
@@ -43,6 +45,7 @@ class ShannonFano
         @codigos[chave] += "1"
       end
 
+      # chama recursivamente para cada subconjunto
       divideConjunto(dicionario)
       divideConjunto(subconjuntoDireito)
     end
@@ -52,6 +55,8 @@ class ShannonFano
   def configuracaoInicial(entrada, *retorno)
     @probabilidades = {}
     @codigos = {}
+
+    # calcula frequência de cada símbolo
     for i in 0...entrada.length
       if (@probabilidades.has_key?(entrada[i]))
         @probabilidades[entrada[i]] += 1
@@ -59,10 +64,14 @@ class ShannonFano
         @probabilidades[entrada[i]] = 1
       end
     end
+
+    # calcula probabilidade em cima da frequência
     @probabilidades.each do |chave, valor|
       @probabilidades[chave] = (0.0 + valor) / entrada.length
       @codigos[chave] = ""
     end
+
+    # ordena de forma decrescente
     @probabilidades = @probabilidades.sort_by(&:last).reverse.to_h
     if retorno
       return @probabilidades
